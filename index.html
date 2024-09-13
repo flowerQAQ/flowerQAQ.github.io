@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME</title>
+    <script>
+        bigbang = new Date()
+    </script>
+
+    <style>
+        *{
+            /* border: 2px solid red; */
+            text-align: center;
+        }
+
+        header{
+            background-color: aquamarine;
+            height: 20%;
+            font-size: 24px;
+        }
+        main{
+            background-color: aliceblue;
+            height: 60%;
+            font-size: 16px;
+        }
+        footer{
+            background-color: bisque;
+            height: 20%;
+            font-size: 10px;
+        }
+    </style>
+    <script>
+        console.log("css运行时间：" + (new Date() - bigbang) + "ms!")
+    </script>
+</head>
+<body>
+    <header>
+        我的项目名
+    </header>
+    <main>
+        I am main
+    </main>
+    <footer>
+        罗熠轩 18070123318
+    </footer>
+    <script>
+        document.body.style.height = innerHeight - 30 + 'px'
+        console.log("渲染时间：" + (new Date() - bigbang) + "ms!")
+        let bigbang2 = new Date();
+        for(let i = 1 ; i <= 1e10 ; i ++){}
+        console.log((new Date() - bigbang2))
+    </script>
+</body>
+
+
+</html>
