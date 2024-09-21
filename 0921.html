@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME</title>
+    <script>
+        bigbang = new Date()
+    </script>
+
+    <style>
+        *{
+            /* border: 2px solid red; */
+            text-align: center;
+        }
+
+        header{
+            background-color: aquamarine;
+            height: 20%;
+            font-size: 24px;
+        }
+        main{
+            background-color: aliceblue;
+            height: 60%;
+            font-size: 16px;
+        }
+        footer{
+            font-size: 0.5em;
+            background-color: bisque;
+            height: 20%;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        cet6
+    </header>
+    <main>
+        <p id = 'word'></p>
+        <p id = 'pron'></p>
+        <p id = 'cn'></p>
+    </main>
+    <footer>
+        罗熠轩 tel:18070123318
+    </footer>
+    <script>
+        document.body.style.height = innerHeight - 30 + 'px';
+
+        function select(str){
+            return document.querySelector(str);
+        }
+
+        //let cetWord = 'adasdx';
+        let cetWord = '';
+        let arrWord = [];
+        fetch('cet6.txt').then(res => res.text()).then(txt => {
+            cetWord = txt;
+            arrWord = cetWord.split('\r\n');
+            
+            let t = Math.floor((arrWord.length - 1) * Math.random());
+            let cWord = arrWord[t];
+            let begin = cWord.indexOf('\t');
+            let end = cWord.lastIndexOf('\t');
+            select('#word').textContent = cWord.slice(0,begin);
+            select('#pron').textContent = cWord.slice(begin + 1 , end);
+            select('#cn').textContent = cWord.slice(end + 1);
+
+            
+        });
+
+    </script>
+</body>
+
+
+</html>
