@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME</title>
+    <script>
+        bigbang = new Date()
+    </script>
+
+    <style>
+        * {
+            /* border: 2px solid red; */
+            text-align: center;
+        }
+
+        header {
+            background-color: aquamarine;
+            height: 20%;
+            font-size: 6vw;
+        }
+
+        main {
+            background-color: aliceblue;
+            height: 60%;
+            font-size: 3vw;
+        }
+
+        footer {
+            font-size: 3vw;
+            background-color: bisque;
+            height: 20%;
+        }
+        body{
+            height: 100vh;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        cet6
+    </header>
+    <main>
+        <p id='word'>abandon</p>
+        <p id='pron'>/ə'bændən/</p>
+        <p id='cn'>vt.离弃,丢弃;遗弃,抛弃;放弃</p>
+        <button onclick="refresh()">下一个</button>
+        <button id = 'loadword'>读入单词</button>
+        <!-- <button id = 'check'>检查</button> -->
+        <p id = 'tip'></p>
+    </main>
+    <footer>
+        今天你背单词了吗?
+    </footer>
+    <script>
+        document.body.style.height = innerHeight - 30 + 'px';
+
+        function select(str) {
+            return document.querySelector(str);
+        }
+        let UI = {};
+        UI.abc = function(w , s){
+            select(w).textContent = s;
+        }
+        let cetWord = '';
+        let arrWord = [];
+
+        for(let i = 1 ; i <= 5 ; i ++){
+            s = 'cet6-' + i + '.txt';
+            console.log(s);
+            fetch(s).then(res => res.text()).then(txt => {
+                cetWord += txt;
+                UI.abc('#tip' , '单词库' + i  + '加载成功');
+                console.log('单词库' + i  + '加载成功');
+            });   
+        }
+
+        select('#loadword').onclick = function(){
+            arrWord = cetWord.split('\r\n');
+            if(arrWord.length < 5000){
+                UI.abc('#tip' , 'please wait');
+            }
+            else{
+                UI.abc('#tip' , '成功读入' + arrWord.length + '个单词');
+            }
+        }
+
+        
+        
+        function refresh() {
+            
+
+                //arrWord = cetWord.split('\r\n');
+
+                let t = Math.floor((arrWord.length - 1) * Math.random());
+                let cWord = arrWord[t];
+                let begin = cWord.indexOf('\t');
+                let end = cWord.lastIndexOf('\t');
+                select('#word').textContent = cWord.slice(0, begin);
+                select('#pron').textContent = cWord.slice(begin + 1, end);
+                select('#cn').textContent = cWord.slice(end + 1);
+
+
+           
+        }
+        //refresh();
+
+    </script>
+</body>
+
+
+</html>
