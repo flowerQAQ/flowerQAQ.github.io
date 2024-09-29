@@ -93,8 +93,10 @@
         function refresh() {
             
 
-                //arrWord = cetWord.split('\r\n');
-
+            if(arrWord.length < 5000){
+                UI.abc('#tip' , '请先读入单词');
+            }
+            else{
                 let t = Math.floor((arrWord.length - 1) * Math.random());
                 let cWord = arrWord[t];
                 let begin = cWord.indexOf('\t');
@@ -102,6 +104,7 @@
                 select('#word').textContent = cWord.slice(0, begin);
                 select('#pron').textContent = cWord.slice(begin + 1, end);
                 select('#cn').textContent = cWord.slice(end + 1);
+            }
 
 
            
